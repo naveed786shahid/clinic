@@ -63,7 +63,8 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
-  --ion-color-fth:#27292d;
+  --ion-color-fth:#424667;
+  --ion-color-btn: #424667;
 }
 @media (prefers-color-scheme: dark) {
   /*
@@ -166,8 +167,8 @@
   }
 
   ion-toolbar {
-    --background-color:#27292d;
-    --background:#27292d;
+    --background-color:#424667;
+    --background:#424667;
     --ion-background-color: var( --ion-color-fth);
   }
 

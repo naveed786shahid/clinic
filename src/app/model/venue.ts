@@ -3,4 +3,5 @@ export class Venue{
     postCode: string;
     address: string[];
     name:string;
+    phone:string
 }

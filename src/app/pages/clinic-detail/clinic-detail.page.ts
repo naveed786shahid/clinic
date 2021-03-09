@@ -85,7 +85,7 @@ export class ClinicDetailPage implements OnInit {
         'date':this.datepipe.transform(this.date,"dd/MM/y"),
         'venueName':this.clinicDetail.clinic.venue.name,
         'postCode':this.clinicDetail.clinic.venue.postCode,
-        'email':'',
+        'email':this.clinicDetail.expert.email,
         }
     });
     return await modal.present();

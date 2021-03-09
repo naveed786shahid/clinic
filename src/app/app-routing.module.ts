@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'register',component: RegisterPage },
   { path: 'dashboard',
     component: DashboardPage,
-    canActivate: [AuthGuard],
     pathMatch : 'full'
   },
   { path: 'dashboard/:id', 

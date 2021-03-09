@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   constructor(
     private alertService: AlertService,
     private authService: AuthService,
-    private router: Router,
+    private router: NavController,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController
   ) { 
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
   ionViewWillEnter() {
     this.authService.getToken().then(() => {
       if(this.authService.isLoggedIn) {
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateRoot('/dashboard');
       }
     });
   }
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
         data => {
           loading.dismiss();
          // this.navCtrl.navigateRoot(['/dashboard']);
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateRoot('/dashboard');
           this.alertService.presentToast("Logged In");
         },
         error => {

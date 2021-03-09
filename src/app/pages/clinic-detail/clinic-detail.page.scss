@@ -6,8 +6,8 @@
     margin-bottom: 5px;
   }
   ion-toolbar {
-    --background-color:#27292d;
-    --background:#27292d;
+    --background-color:#424667;
+    --background:#424667;
     color:beige;
     --ion-background-color: var( --ion-color-fth);
   }
@@ -15,8 +15,13 @@
     font-size: 25px; //Preferred size here
 }
 ion-card{
-  background:#dccdea;
+  background:#C4CEEF;
+  color:black;
 }
 app-clinic-detail{
     width: 100% !important;
+}
+ion-button{
+  color:beige;
+  background:#424667;  
 }
