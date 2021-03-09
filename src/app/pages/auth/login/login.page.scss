@@ -1,0 +1,13 @@
+ion-toolbar {
+    --background-color:#27292d;
+    --background:#27292d;
+    color:beige;
+    --ion-background-color: var( --ion-color-fth);
+  }
+  ion-icon {
+    font-size: 25px; //Preferred size here
+}
+ion-button{
+    color:beige;
+    background:#27292d;  
+}

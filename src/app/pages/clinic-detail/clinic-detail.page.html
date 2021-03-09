@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar style=" color: white">
+      
+      <ion-buttons slot="end" (click)="logout()">
+          <ion-icon slot="end" name="log-out"></ion-icon>
+      </ion-buttons>
+      <ion-title>Clinic Detail</ion-title>
+      <ion-buttons slot="start" (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+      <ion-row>
+          <ion-col>
+    
+          </ion-col>
+          <ion-col >
+              <ion-button   color="dark"  (click)="openEmail($event)">
+                  <ion-icon name="mail"></ion-icon> Email list
+              </ion-button>
+           
+          </ion-col>
+           
+        </ion-row>
+         
+   <ion-item>
+    <ion-label>
+      <h2 style="color:#4a4646"> {{clinicDetail?.clinic?.venue.name}}</h2>
+      <h3>  {{clinicDetail?.clinic?.venue.address[0]}},
+          {{clinicDetail?.clinic?.venue.address[1]}},
+          {{clinicDetail?.clinic?.venue.address[2]}}</h3>
+      <h3> {{clinicDetail?.clinic?.venue?.postCode}}</h3>
+      <h3>{{date | date :  "dd/MM/y" }}</h3>
+      </ion-label>
+   </ion-item>
+    <span> 
+    <ion-card  *ngFor="let clinic of clinicDetail.slots;let i=index">
+      <ion-card-header>
+        <ion-card-title>{{clinic.case?.title}} {{clinic.case?.firstName}} {{clinic.case?.lastName}}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+            <ion-label>
+                 <div>Time : {{clinic.time}}</div>
+                  <div>Accident Date : {{clinic.case?.claimantInfo?.accidentDate | date :  "dd/MM/y"}} </div>
+                  <div>DOB : {{clinic.case?.claimantInfo?.dateOfBirth | date :  "dd/MM/y"}} </div>
+              </ion-label>
+          
+              <ion-label>
+                  <div>Instruction :</div>
+                  <p ion-text>{{clinic.case?.claimantInfo?.clinicListInstructions}} </p>
+              </ion-label>
+          
+      <!-- case->  claimantInfo
+          accidentDate: string;
+          clinicListInstructions: string;
+          homePhone:string;
+          workPhone:string; -->
+      </ion-card-content>
+    
+      <ion-footer>
+        <ion-row>
+          <ion-col center text-center>
+              <!-- <ion-fab color="success"  vertical="center" horizontal="center" >
+                  <ion-fab-button >
+                      <ion-icon name="call-outline" ></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-list  side="end" *ngIf="clinic.case?.claimantInfo?.workPhone!=''">
+                      <ion-fab-button><a  href="'tel:'{clinic.case?.claimantInfo?.workPhone}">Work Phone</a></ion-fab-button>
+                    </ion-fab-list>
+                    <ion-fab-list side="start" *ngIf="clinic.case?.claimantInfo?.homePhone!=''">
+                        <ion-fab-button><a [href]="'tel:'+clinic.case?.claimantInfo?.homePhone">Home Phone</a></ion-fab-button>
+                      </ion-fab-list>
+                      <ion-fab-list side="top" *ngIf="clinic.case?.mobile!=''">
+                          <ion-fab-button><a [href]="'tel:'+clinic.case?.mobile">Mobile Phone</a></ion-fab-button>
+                        </ion-fab-list>
+                </ion-fab> -->
+            <ion-button  color="dark"  expand="block" (click)="openDialPad(clinic.case?.mobile,clinic.case?.claimantInfo?.homePhone,clinic.case?.claimantInfo?.workPhone)">
+                <ion-icon name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        
+          
+        </ion-row>
+      </ion-footer>
+   
+    </ion-card>
+    </span>
+  </ion-content>
+  <!-- <ion-footer>
+    <ion-row style="background: #27292d;text-align: center">
+      <ion-col center text-center style="color:beige">
+          
+        <span (click)="changePage('today')">
+        <ion-icon name="calendar" >
+         
+        </ion-icon>
+         <div style="font-size: x-small">Today Clinic</div>
+        </span>
+       
+      </ion-col>
+      <ion-col center text-center style="color:beige">
+         
+        <span (click)="changePage('future')">
+          <ion-icon name="home" ></ion-icon>
+           <div  style="font-size: x-small">Future Clinic</div>
+          </span>
+             
+        
+  
+        
+        </ion-col>
+      
+    </ion-row>
+  </ion-footer> -->

@@ -74,6 +74,7 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+  --ion-color-fth:#27292d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -189,7 +190,11 @@
     --ion-toolbar-background: var(--ion-color-step-150);
     --ion-toolbar-border-color: var(--ion-color-step-250);
   }
-
+  ion-toolbar {
+    --background-color:#27292d;
+    --background:#27292d;
+    --ion-background-color: var( --ion-color-fth);
+  }
 
   /*
    * Material Design Dark Theme
@@ -233,4 +238,7 @@
 
     --ion-card-background: #1e1e1e;
   }
+  app-clinic-detail{
+    width: 100% !important;
+}
 }

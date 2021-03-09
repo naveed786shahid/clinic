@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="start">Clinic List</ion-title>
+    <ion-title slot="end" (click)="dismiss()">Close</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="myForm" >
+        <ion-item lines="full">
+            <ion-label>Select  Date</ion-label>
+            <ion-datetime formControlName="date" displayFormat="DD/MM/YYYY" placeholder="Select Date" ></ion-datetime>
+            <ion-text color="danger">
+                <span *ngIf="submitted && errorCtr.date.errors?.required">
+                  Date is required.
+                </span>
+                </ion-text>
+          </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating">To</ion-label>
+          <ion-input formControlName="to" type="text"></ion-input>
+          <ion-text color="danger">
+              <span *ngIf="submitted && errorCtr.to.errors?.required">
+                To is required.
+              </span>
+              </ion-text>
+        </ion-item>
+         <ion-item >
+          <ion-label position="floating">Subject</ion-label>
+          <ion-input formControlName="subject" type="text"></ion-input>
+          <ion-text color="danger">
+              <span  *ngIf="submitted && errorCtr.subject.errors?.required">
+                Subject is required.
+              </span>
+            </ion-text>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Body</ion-label>
+            <ion-textarea formControlName="body" type="text"></ion-textarea>
+            <ion-text color="danger">
+                <span  *ngIf="submitted && errorCtr.body.errors?.required">
+                  Body is required.
+                </span>
+              </ion-text>
+          </ion-item>
+        
+        
+    
+        <ion-row>
+          <ion-col>
+            <ion-button  color="dark" expand="block" (click)="sendEmail()">Send</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+  
+</ion-content>

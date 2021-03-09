@@ -1,0 +1,88 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    
+  <form [formGroup]="myForm" >
+      <ion-avatar style="width: 35%; height: 50%;margin-top: 50px;margin-left: 30%;">
+          <img src="/assets/logo.jpg" alt="image" style="text-align: center">
+        </ion-avatar>
+        
+    <ion-item lines="full">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <ion-text color="danger">
+    <span class="error ion-padding"  color="danger" *ngIf="submitted && errorCtr.username.errors?.required">
+      Username is required.
+    </span>
+    </ion-text>
+    <!-- <span class="error ion-padding" [ngIf]="submitted && errorCtr.username.errors?.minlength">
+      Min 3 chars long.
+    </span> -->
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger">
+    <span class="error ion-padding"  color="danger" *ngIf="submitted && errorCtr.password.errors?.required">
+      Password is required.
+    </span>
+  </ion-text>
+    <!-- <span class="error ion-padding" [ngIf]="submitted && errorCtr.password.errors?.pattern">
+      Enter valid email.
+    </span> -->
+
+    <!-- <ion-item lines="full">
+      <ion-label position="floating">DOB</ion-label>
+      <ion-datetime (ionChange)="fetchDate($event)" formControlName="dob" [value]="defaultDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input maxlength="10" formControlName="phone" type="text" required></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.required">
+      Phone number is required.
+    </span>
+    <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.pattern">
+      Number values allowed.
+    </span> -->
+
+    <ion-row>
+      <ion-col>
+        <ion-button  color="fth" expand="block" (click)="login()">Login</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding style="height: 100%;">
+  <form [formGroup]="form"  >
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input ngModel type="text" name="username"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input ngModel type="password" name="password"></ion-input>
+    </ion-item>
+  
+    <p text-right>Forgot Password?</p>
+  
+    <ion-button  expand="full" color="primary" (click)="login(form)">Login</ion-button>
+  </form>
+  <p text-center>Don't have a account?</p>
+  <ion-button expand="full" color="danger" (click)="registerModal()">Register</ion-button>
+</ion-content> -->

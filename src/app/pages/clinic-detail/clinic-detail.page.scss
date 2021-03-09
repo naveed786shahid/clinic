@@ -1,0 +1,22 @@
+.custom-skeleton ion-skeleton-text {
+    line-height: 13px;
+  }
+  
+  .custom-skeleton ion-skeleton-text:last-child {
+    margin-bottom: 5px;
+  }
+  ion-toolbar {
+    --background-color:#27292d;
+    --background:#27292d;
+    color:beige;
+    --ion-background-color: var( --ion-color-fth);
+  }
+  ion-icon {
+    font-size: 25px; //Preferred size here
+}
+ion-card{
+  background:#dccdea;
+}
+app-clinic-detail{
+    width: 100% !important;
+}

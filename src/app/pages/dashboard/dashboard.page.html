@@ -1,0 +1,195 @@
+<ion-header>
+  <ion-toolbar style=" color: white">
+      <!-- <img src="/assets/logo.jpg" alt="image" style="text-align: center"> -->
+    <ion-buttons slot="end" (click)="logout()">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{page}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+ <ion-item>
+  <ion-label>
+    <h3 style="color:#4a4646">Welcome </h3>
+    
+    <h3>Dr. {{user?.firstName+' '+user?.lastName}}</h3>
+    </ion-label>
+ </ion-item>
+    
+  
+  
+  <ion-card *ngFor="let clinic of clinics;let i=index">
+   <span tappable (click)="toggleSection(i,clinic?.clinic?.venueId,clinic?.date)" [ngClass]="{'section-active': open==i, 'section': open!=i}">
+   <ion-card-header>
+      <ion-card-title>{{clinic?.clinic?.venue.venue}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-label>
+            <h3>
+              {{clinic?.clinic?.venue.address[0]}},
+              {{clinic?.clinic?.venue.address[1]}},
+              {{clinic?.clinic?.venue.address[2]}}</h3>
+         </ion-label>
+         <ion-label>
+               <h3>
+                 {{clinic?.clinic?.venue?.postCode}}</h3>
+            </ion-label>
+          <ion-label>
+                <div>{{clinic?.date | date :  "dd/MM/y"}}</div>
+                <div>Booked : {{clinic?.bookedclients}} </div>
+            </ion-label>
+        
+    </ion-card-content>
+    
+   
+        <!-- <ion-icon slot="start" name="arrow-forward" *ngIf="open!=i"></ion-icon>
+        <ion-icon slot="start" name="arrow-down" *ngIf="open==i"></ion-icon> -->
+     
+    <!-- <span *ngIf="open==i && isLoad">
+    <ion-card-header>
+      <ion-card-title>{{clinicDetail.slots[0].case?.title}} {{clinicDetail.slots[0].case?.firstName}} {{clinicDetail.slots[0].case?.lastName}}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+        <ion-item>
+            <ion-label>
+                <div>Time : {{clinicDetail?.slots[0].time}}</div>
+                <div>Accident Date : {{clinicDetail?.slots[0].case?.claimantInfo?.accidentDate}} </div>
+            </ion-label>
+        </ion-item>
+        <ion-item *ngIf="clinicDetail?.slots[0].case?.claimantInfo?.clinicListInstructions">
+            <ion-label>
+                <div>Instruction</div>
+                <p ion-text>{{clinicDetail?.slots[0].case?.claimantInfo?.clinicListInstructions}} </p>
+            </ion-label>
+        </ion-item>
+    <!-- case->  claimantInfo
+        accidentDate: string;
+        clinicListInstructions: string;
+        homePhone:string;
+        workPhone:string; -->
+    <!-- </ion-card-content>
+  
+    <ion-footer>
+      <ion-row>
+        <ion-col center text-center>
+            <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+                <ion-fab-button >
+                    <ion-icon name="call-outline"></ion-icon>
+                </ion-fab-button>
+              </ion-fab>
+          <ion-button  color="saccess" expand="block">
+              <ion-icon name="call-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col center text-center>
+            <ion-button  color="dark" expand="block" (click)="openEmail($event,clinic?.clinic?.venueId)">
+                Send Email
+            </ion-button>
+          </ion-col>
+        
+      </ion-row>
+    </ion-footer>
+  </span> -->
+</span>
+  </ion-card>
+  <ion-infinite-scroll *ngIf="pageId!='today'" threshold="100px" (ionInfinite)="loadFuture($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+  <!-- <p *ngIf="clinics.length == 0 " text-center>Sorry, nothing in here!</p> -->
+  <!-- Skeleton screen -->
+<!-- <div *ngIf="!data">
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  </div> -->
+  
+</ion-content>
+<ion-footer>
+  <ion-row style="background: #27292d;text-align: center">
+    <ion-col center text-center style="color:beige">
+        
+      <span (click)="changePage('today')">
+      <ion-icon name="calendar" >
+       
+      </ion-icon>
+       <div style="font-size: x-small">Today Clinic</div>
+      </span>
+     
+    </ion-col>
+    <ion-col center text-center style="color:beige">
+       
+      <span (click)="changePage('future')">
+        <ion-icon name="home" ></ion-icon>
+         <div  style="font-size: x-small">Future Clinic</div>
+        </span>
+           
+      
+
+      
+      </ion-col>
+    
+  </ion-row>
+</ion-footer>
