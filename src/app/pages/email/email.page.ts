@@ -8,11 +8,13 @@ import { EnvService } from 'src/app/services/env.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { MenuController, ModalController, LoadingController } from '@ionic/angular';
 import { AttachmentDto } from '../../model/attachmentDto';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.page.html',
   styleUrls: ['./email.page.scss'],
+  providers:[DatePipe]
   
 })
 export class EmailPage implements OnInit {
@@ -33,7 +35,8 @@ export class EmailPage implements OnInit {
     private authService: AuthService,
     public modalController: ModalController,
     public loadingController: LoadingController,
-    public formBuilder: FormBuilder) { 
+    public formBuilder: FormBuilder,
+    public datepipe: DatePipe) { 
       
     }
    
@@ -94,7 +97,7 @@ export class EmailPage implements OnInit {
       var attachments=new AttachmentDto();
       attachments.originalname="cliniclist.pdf";
       attachments.contentType="application/pdf";
-      attachments.path=this.env.API_URL + 'appointment/clinic-list?expertId='+this.user.id+'&venueId='+this.venueId+'&date='+this.myForm.value.date;
+      attachments.path=this.env.API_URL + 'appointment/clinic-list?expertId='+this.user.id+'&venueId='+this.venueId+'&date='+this.datepipe.transform(this.myForm.value.date,"y.dd.MM");
       dto.attachments= Array<AttachmentDto>();
       dto.attachments.push(attachments);
       this.authService.sendEmail(dto).subscribe(
