@@ -1440,6 +1440,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_alert_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/services/alert.service */ "3LUQ");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _model_attachmentDto__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../model/attachmentDto */ "yoHL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
 
 
 
@@ -1453,13 +1455,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let EmailPage = class EmailPage {
-    constructor(env, alertService, authService, modalController, loadingController, formBuilder) {
+    constructor(env, alertService, authService, modalController, loadingController, formBuilder, datepipe) {
         this.env = env;
         this.alertService = alertService;
         this.authService = authService;
         this.modalController = modalController;
         this.loadingController = loadingController;
         this.formBuilder = formBuilder;
+        this.datepipe = datepipe;
         this.submitted = false;
     }
     ngOnInit() {
@@ -1514,7 +1517,7 @@ let EmailPage = class EmailPage {
                 var attachments = new _model_attachmentDto__WEBPACK_IMPORTED_MODULE_11__["AttachmentDto"]();
                 attachments.originalname = "cliniclist.pdf";
                 attachments.contentType = "application/pdf";
-                attachments.path = this.env.API_URL + 'appointment/clinic-list?expertId=' + this.user.id + '&venueId=' + this.venueId + '&date=' + this.myForm.value.date;
+                attachments.path = this.env.API_URL + 'appointment/clinic-list?expertId=' + this.user.id + '&venueId=' + this.venueId + '&date=' + this.datepipe.transform(this.myForm.value.date, "y.dd.MM");
                 dto.attachments = Array();
                 dto.attachments.push(attachments);
                 this.authService.sendEmail(dto).subscribe((data) => {
@@ -1545,7 +1548,8 @@ EmailPage.ctorParameters = () => [
     { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ModalController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["LoadingController"] },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"] }
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_12__["DatePipe"] }
 ];
 EmailPage.propDecorators = {
     venueId: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Input"] }],
@@ -1558,6 +1562,7 @@ EmailPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
         selector: 'app-email',
         template: _raw_loader_email_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        providers: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["DatePipe"]],
         styles: [_email_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })
 ], EmailPage);
